@@ -11,7 +11,7 @@ router.post('/',
         check('nombre', 'El nombre es obligatorio').not().isEmpty(),
         check('proyecto', 'El proyecto es obligatorio').not().isEmpty(),
     ],
-    taskController
+    taskController.createTask
 );
 
 //obtener tareas por poryecto
@@ -23,7 +23,7 @@ router.get('/',
 //actualizar tarea
 router.put('/:id',
     auth,
-    taskController.refreshTask,
+    taskController.refreshTask
 );
 
 //eliminar tarea
