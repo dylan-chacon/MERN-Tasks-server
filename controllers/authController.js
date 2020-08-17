@@ -42,3 +42,13 @@ exports.auth = async (req, res) => {
         console.log(error);
     }
 }
+
+//obtener user
+exports.userAuth = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        res.json({user});
+    } catch (error) {
+        res.status(500).json('Hubo un error');
+    }
+}
