@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const UserSchema =  mongoose.Schema({
-    nombre: {
+    name: {
         type: String,
         required: true,
         trim: true
@@ -17,7 +17,7 @@ const UserSchema =  mongoose.Schema({
         required: true,
         trim: true
     },
-    registro: {
+    registry: {
         type: Date,
         default: Date.now()
     }
