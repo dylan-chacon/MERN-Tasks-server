@@ -14,7 +14,7 @@ exports.createProject = async (req, res) => {
         project.creador = req.user.id;
         //guardar proyecto
         project.save();
-        res.json(project);
+        res.json({ project });
     } catch (error) {
         console.log();
         res.status(500).send('Hubo un error')
@@ -39,11 +39,11 @@ exports.refreshProject = async (req, res) => {
         return res.status(400).json({errors: errors.array()});
     }
     //info proyecto
-    const { nombre } = req.body;
+    const { name } = req.body;
     const newProject = {};
 
-    if (nombre) {
-        newProject.nombre = nombre;
+    if (name) {
+        newProject.name = name;
     }
 
     try {

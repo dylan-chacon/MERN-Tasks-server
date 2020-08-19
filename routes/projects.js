@@ -8,7 +8,7 @@ const projectController = require('../controllers/projectController');
 router.post('/',
     auth,
     [
-        check('nombre', 'El nombre del proyecto es obligatorio').not().isEmpty()
+        check('name', 'El nombre del proyecto es obligatorio').not().isEmpty()
     ],
     projectController.createProject
 );
@@ -23,7 +23,7 @@ router.get('/',
 router.put('/:id',
     auth,
     [
-        check('nombre', 'El nombre del proyecto es obligatorio').not().isEmpty()
+        check('name', 'El nombre del proyecto es obligatorio').not().isEmpty()
     ],
     projectController.refreshProject
 )
