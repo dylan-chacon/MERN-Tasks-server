@@ -31,9 +31,9 @@ exports.createTask = async (req, res) => {
 
 //obtener tareas por proyecto
 exports.getTasks = async (req, res) => {
-    //verificar proyecto
-    const { project } = req.body;
     try {
+        //verificar proyecto
+        const { project } = req.query;
         const actualProject = await Project.findById(project);
         if (!actualProject) {
             return  res.status(404).json({msg: 'Proyecto no encontrado'})
@@ -43,7 +43,7 @@ exports.getTasks = async (req, res) => {
             return res.status(401).json({msg: 'No autorizado'});
         }
         //obtener tareas por poryecto
-        const tasks = await tareas.find({project});
+        const tasks = await Task.find({project}).sort({ creado: -1 });
         res.json({tasks});
     } catch (error) {
         res.status(500).send('Hubo un error');
@@ -52,11 +52,11 @@ exports.getTasks = async (req, res) => {
 
 //actualizar tarea
 exports.refreshTask = async (req, res) => {
-    const { project, nombre, estado } = req.body;
+    const { project, name, state } = req.body;
     try {
         //existe tarea
-        let actualTask = await Task.findById(req.params.id);
-        if (!actualTask) {
+        let task = await Task.findById(req.params.id);
+        if (!task) {
             return  res.status(404).json({msg: 'No existe tarea'});
         }
         //existe proyecto
@@ -69,16 +69,16 @@ exports.refreshTask = async (req, res) => {
             return res.status(401).json({msg: 'No autorizado'});
         }
         //nuevo objeto con la nueva info
-        const newTask = {};
-        if (nombre) newTask.nombre = nombre;
-        if (estado) newTask.estado = estado;
+        let newTask = {};
+        newTask.state = state;
+        newTask.name = name;
         //guardar tarea
-        actualTask = await Task.findOneAndUpdate(
+        task = await Task.findOneAndUpdate(
             {_id: req.params.id},
             newTask,
             {new: true}
         );
-        res.json({actualTask});
+        res.json({task});
     } catch (error) {
         res.status(500).send('Hubo un error');
     }
@@ -86,7 +86,7 @@ exports.refreshTask = async (req, res) => {
 
 //eliminar tarea
 exports.deleteTask = async (req, res) => {
-    const { project } = req.body;
+    const { project } = req.query;
     try {
         //existe tarea
         let actualTask = await Task.findById(req.params.id);

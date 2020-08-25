@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const TaskSchema = mongoose.Schema({
-    nombre: {
+    name: {
         type: String,
         required: true,
         trim: true
     },
-    estado: {
+    state: {
         type: Boolean,
         default: false
     },
@@ -14,7 +14,7 @@ const TaskSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    proyecto: {
+    project: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project'
     }

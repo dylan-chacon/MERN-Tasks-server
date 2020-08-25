@@ -8,8 +8,8 @@ const taskController = require('../controllers/taskController');
 router.post('/',
     auth,
     [
-        check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-        check('proyecto', 'El proyecto es obligatorio').not().isEmpty(),
+        check('name', 'El nombre es obligatorio').not().isEmpty(),
+        check('project', 'El proyecto es obligatorio').not().isEmpty(),
     ],
     taskController.createTask
 );
