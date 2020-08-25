@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "dev": "node index"
   },
   "author": "Dylan",
   "license": "ISC",
