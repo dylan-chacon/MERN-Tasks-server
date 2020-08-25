@@ -4,8 +4,8 @@
   "description": "MERN API for MERN Tasks",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "dev": "node index"
+    "start": "node index",
+    "dev": "nodemon ."
   },
   "author": "Dylan",
   "license": "ISC",
